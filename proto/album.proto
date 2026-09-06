@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package album;
+
+option go_package = "/common";
+
+message Album {
+  string id = 1;
+  string title = 2;
+  string artist = 3;
+  double price = 4;
+}
+
+message ReadRequest {
+  string id = 1;
+}
+
+message ReadResponse {
+  Album album = 1;
+}
+
+service AlbumService {
+  rpc Read(ReadRequest) returns (ReadResponse);
+}
+
+// protoc --go_out=. --go-grpc_out=. proto/album.proto
