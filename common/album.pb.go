@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.12
 // 	protoc        v7.36.0
-// source: proto/album.proto
+// source: common/album.proto
 
 package common
 
@@ -33,7 +33,7 @@ type Album struct {
 
 func (x *Album) Reset() {
 	*x = Album{}
-	mi := &file_proto_album_proto_msgTypes[0]
+	mi := &file_common_album_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +45,7 @@ func (x *Album) String() string {
 func (*Album) ProtoMessage() {}
 
 func (x *Album) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_album_proto_msgTypes[0]
+	mi := &file_common_album_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +58,7 @@ func (x *Album) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Album.ProtoReflect.Descriptor instead.
 func (*Album) Descriptor() ([]byte, []int) {
-	return file_proto_album_proto_rawDescGZIP(), []int{0}
+	return file_common_album_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Album) GetId() string {
@@ -98,7 +98,7 @@ type ReadRequest struct {
 
 func (x *ReadRequest) Reset() {
 	*x = ReadRequest{}
-	mi := &file_proto_album_proto_msgTypes[1]
+	mi := &file_common_album_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -110,7 +110,7 @@ func (x *ReadRequest) String() string {
 func (*ReadRequest) ProtoMessage() {}
 
 func (x *ReadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_album_proto_msgTypes[1]
+	mi := &file_common_album_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123,10 +123,182 @@ func (x *ReadRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadRequest.ProtoReflect.Descriptor instead.
 func (*ReadRequest) Descriptor() ([]byte, []int) {
-	return file_proto_album_proto_rawDescGZIP(), []int{1}
+	return file_common_album_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ReadRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type CreateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Artist        string                 `protobuf:"bytes,2,opt,name=artist,proto3" json:"artist,omitempty"`
+	Price         float64                `protobuf:"fixed64,3,opt,name=price,proto3" json:"price,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateRequest) Reset() {
+	*x = CreateRequest{}
+	mi := &file_common_album_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateRequest) ProtoMessage() {}
+
+func (x *CreateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_common_album_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateRequest.ProtoReflect.Descriptor instead.
+func (*CreateRequest) Descriptor() ([]byte, []int) {
+	return file_common_album_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CreateRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateRequest) GetArtist() string {
+	if x != nil {
+		return x.Artist
+	}
+	return ""
+}
+
+func (x *CreateRequest) GetPrice() float64 {
+	if x != nil {
+		return x.Price
+	}
+	return 0
+}
+
+type UpdateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Artist        string                 `protobuf:"bytes,3,opt,name=artist,proto3" json:"artist,omitempty"`
+	Price         float64                `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateRequest) Reset() {
+	*x = UpdateRequest{}
+	mi := &file_common_album_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateRequest) ProtoMessage() {}
+
+func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_common_album_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
+func (*UpdateRequest) Descriptor() ([]byte, []int) {
+	return file_common_album_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *UpdateRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *UpdateRequest) GetArtist() string {
+	if x != nil {
+		return x.Artist
+	}
+	return ""
+}
+
+func (x *UpdateRequest) GetPrice() float64 {
+	if x != nil {
+		return x.Price
+	}
+	return 0
+}
+
+type DeleteRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteRequest) Reset() {
+	*x = DeleteRequest{}
+	mi := &file_common_album_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRequest) ProtoMessage() {}
+
+func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_common_album_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
+func (*DeleteRequest) Descriptor() ([]byte, []int) {
+	return file_common_album_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *DeleteRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
@@ -142,7 +314,7 @@ type ReadResponse struct {
 
 func (x *ReadResponse) Reset() {
 	*x = ReadResponse{}
-	mi := &file_proto_album_proto_msgTypes[2]
+	mi := &file_common_album_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -154,7 +326,7 @@ func (x *ReadResponse) String() string {
 func (*ReadResponse) ProtoMessage() {}
 
 func (x *ReadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_album_proto_msgTypes[2]
+	mi := &file_common_album_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -167,7 +339,7 @@ func (x *ReadResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadResponse.ProtoReflect.Descriptor instead.
 func (*ReadResponse) Descriptor() ([]byte, []int) {
-	return file_proto_album_proto_rawDescGZIP(), []int{2}
+	return file_common_album_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ReadResponse) GetAlbum() *Album {
@@ -177,72 +349,238 @@ func (x *ReadResponse) GetAlbum() *Album {
 	return nil
 }
 
-var File_proto_album_proto protoreflect.FileDescriptor
+type CreateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Album         *Album                 `protobuf:"bytes,1,opt,name=album,proto3" json:"album,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
 
-const file_proto_album_proto_rawDesc = "" +
+func (x *CreateResponse) Reset() {
+	*x = CreateResponse{}
+	mi := &file_common_album_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateResponse) ProtoMessage() {}
+
+func (x *CreateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_common_album_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateResponse.ProtoReflect.Descriptor instead.
+func (*CreateResponse) Descriptor() ([]byte, []int) {
+	return file_common_album_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *CreateResponse) GetAlbum() *Album {
+	if x != nil {
+		return x.Album
+	}
+	return nil
+}
+
+type UpdateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Album         *Album                 `protobuf:"bytes,1,opt,name=album,proto3" json:"album,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateResponse) Reset() {
+	*x = UpdateResponse{}
+	mi := &file_common_album_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateResponse) ProtoMessage() {}
+
+func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_common_album_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
+func (*UpdateResponse) Descriptor() ([]byte, []int) {
+	return file_common_album_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *UpdateResponse) GetAlbum() *Album {
+	if x != nil {
+		return x.Album
+	}
+	return nil
+}
+
+type DeleteResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteResponse) Reset() {
+	*x = DeleteResponse{}
+	mi := &file_common_album_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteResponse) ProtoMessage() {}
+
+func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_common_album_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
+func (*DeleteResponse) Descriptor() ([]byte, []int) {
+	return file_common_album_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *DeleteResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+var File_common_album_proto protoreflect.FileDescriptor
+
+const file_common_album_proto_rawDesc = "" +
 	"\n" +
-	"\x11proto/album.proto\x12\x05album\"[\n" +
+	"\x12common/album.proto\x12\bmetering\"[\n" +
 	"\x05Album\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x16\n" +
 	"\x06artist\x18\x03 \x01(\tR\x06artist\x12\x14\n" +
 	"\x05price\x18\x04 \x01(\x01R\x05price\"\x1d\n" +
 	"\vReadRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"2\n" +
-	"\fReadResponse\x12\"\n" +
-	"\x05album\x18\x01 \x01(\v2\f.album.AlbumR\x05album2?\n" +
-	"\fAlbumService\x12/\n" +
-	"\x04Read\x12\x12.album.ReadRequest\x1a\x13.album.ReadResponseB\tZ\a/commonb\x06proto3"
+	"\x02id\x18\x01 \x01(\tR\x02id\"S\n" +
+	"\rCreateRequest\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12\x16\n" +
+	"\x06artist\x18\x02 \x01(\tR\x06artist\x12\x14\n" +
+	"\x05price\x18\x03 \x01(\x01R\x05price\"c\n" +
+	"\rUpdateRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x16\n" +
+	"\x06artist\x18\x03 \x01(\tR\x06artist\x12\x14\n" +
+	"\x05price\x18\x04 \x01(\x01R\x05price\"\x1f\n" +
+	"\rDeleteRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"5\n" +
+	"\fReadResponse\x12%\n" +
+	"\x05album\x18\x01 \x01(\v2\x0f.metering.AlbumR\x05album\"7\n" +
+	"\x0eCreateResponse\x12%\n" +
+	"\x05album\x18\x01 \x01(\v2\x0f.metering.AlbumR\x05album\"7\n" +
+	"\x0eUpdateResponse\x12%\n" +
+	"\x05album\x18\x01 \x01(\v2\x0f.metering.AlbumR\x05album\" \n" +
+	"\x0eDeleteResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xfc\x01\n" +
+	"\fAlbumService\x125\n" +
+	"\x04Read\x12\x15.metering.ReadRequest\x1a\x16.metering.ReadResponse\x12;\n" +
+	"\x06Create\x12\x17.metering.CreateRequest\x1a\x18.metering.CreateResponse\x12;\n" +
+	"\x06Update\x12\x17.metering.UpdateRequest\x1a\x18.metering.UpdateResponse\x12;\n" +
+	"\x06Delete\x12\x17.metering.DeleteRequest\x1a\x18.metering.DeleteResponseB\tZ\a/commonb\x06proto3"
 
 var (
-	file_proto_album_proto_rawDescOnce sync.Once
-	file_proto_album_proto_rawDescData []byte
+	file_common_album_proto_rawDescOnce sync.Once
+	file_common_album_proto_rawDescData []byte
 )
 
-func file_proto_album_proto_rawDescGZIP() []byte {
-	file_proto_album_proto_rawDescOnce.Do(func() {
-		file_proto_album_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_album_proto_rawDesc), len(file_proto_album_proto_rawDesc)))
+func file_common_album_proto_rawDescGZIP() []byte {
+	file_common_album_proto_rawDescOnce.Do(func() {
+		file_common_album_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_common_album_proto_rawDesc), len(file_common_album_proto_rawDesc)))
 	})
-	return file_proto_album_proto_rawDescData
+	return file_common_album_proto_rawDescData
 }
 
-var file_proto_album_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_proto_album_proto_goTypes = []any{
-	(*Album)(nil),        // 0: album.Album
-	(*ReadRequest)(nil),  // 1: album.ReadRequest
-	(*ReadResponse)(nil), // 2: album.ReadResponse
+var file_common_album_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_common_album_proto_goTypes = []any{
+	(*Album)(nil),          // 0: metering.Album
+	(*ReadRequest)(nil),    // 1: metering.ReadRequest
+	(*CreateRequest)(nil),  // 2: metering.CreateRequest
+	(*UpdateRequest)(nil),  // 3: metering.UpdateRequest
+	(*DeleteRequest)(nil),  // 4: metering.DeleteRequest
+	(*ReadResponse)(nil),   // 5: metering.ReadResponse
+	(*CreateResponse)(nil), // 6: metering.CreateResponse
+	(*UpdateResponse)(nil), // 7: metering.UpdateResponse
+	(*DeleteResponse)(nil), // 8: metering.DeleteResponse
 }
-var file_proto_album_proto_depIdxs = []int32{
-	0, // 0: album.ReadResponse.album:type_name -> album.Album
-	1, // 1: album.AlbumService.Read:input_type -> album.ReadRequest
-	2, // 2: album.AlbumService.Read:output_type -> album.ReadResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+var file_common_album_proto_depIdxs = []int32{
+	0, // 0: metering.ReadResponse.album:type_name -> metering.Album
+	0, // 1: metering.CreateResponse.album:type_name -> metering.Album
+	0, // 2: metering.UpdateResponse.album:type_name -> metering.Album
+	1, // 3: metering.AlbumService.Read:input_type -> metering.ReadRequest
+	2, // 4: metering.AlbumService.Create:input_type -> metering.CreateRequest
+	3, // 5: metering.AlbumService.Update:input_type -> metering.UpdateRequest
+	4, // 6: metering.AlbumService.Delete:input_type -> metering.DeleteRequest
+	5, // 7: metering.AlbumService.Read:output_type -> metering.ReadResponse
+	6, // 8: metering.AlbumService.Create:output_type -> metering.CreateResponse
+	7, // 9: metering.AlbumService.Update:output_type -> metering.UpdateResponse
+	8, // 10: metering.AlbumService.Delete:output_type -> metering.DeleteResponse
+	7, // [7:11] is the sub-list for method output_type
+	3, // [3:7] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_proto_album_proto_init() }
-func file_proto_album_proto_init() {
-	if File_proto_album_proto != nil {
+func init() { file_common_album_proto_init() }
+func file_common_album_proto_init() {
+	if File_common_album_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_album_proto_rawDesc), len(file_proto_album_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_album_proto_rawDesc), len(file_common_album_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_album_proto_goTypes,
-		DependencyIndexes: file_proto_album_proto_depIdxs,
-		MessageInfos:      file_proto_album_proto_msgTypes,
+		GoTypes:           file_common_album_proto_goTypes,
+		DependencyIndexes: file_common_album_proto_depIdxs,
+		MessageInfos:      file_common_album_proto_msgTypes,
 	}.Build()
-	File_proto_album_proto = out.File
-	file_proto_album_proto_goTypes = nil
-	file_proto_album_proto_depIdxs = nil
+	File_common_album_proto = out.File
+	file_common_album_proto_goTypes = nil
+	file_common_album_proto_depIdxs = nil
 }
