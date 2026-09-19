@@ -9,6 +9,7 @@ package common
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -194,11 +195,11 @@ func (x *CreateRequest) GetPrice() float64 {
 }
 
 type UpdateRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Artist        string                 `protobuf:"bytes,3,opt,name=artist,proto3" json:"artist,omitempty"`
-	Price         float64                `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"`
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	Id            string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Artist        *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=artist,proto3" json:"artist,omitempty"`
+	Price         *wrapperspb.DoubleValue `protobuf:"bytes,4,opt,name=price,proto3" json:"price,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -240,25 +241,25 @@ func (x *UpdateRequest) GetId() string {
 	return ""
 }
 
-func (x *UpdateRequest) GetTitle() string {
+func (x *UpdateRequest) GetTitle() *wrapperspb.StringValue {
 	if x != nil {
 		return x.Title
 	}
-	return ""
+	return nil
 }
 
-func (x *UpdateRequest) GetArtist() string {
+func (x *UpdateRequest) GetArtist() *wrapperspb.StringValue {
 	if x != nil {
 		return x.Artist
 	}
-	return ""
+	return nil
 }
 
-func (x *UpdateRequest) GetPrice() float64 {
+func (x *UpdateRequest) GetPrice() *wrapperspb.DoubleValue {
 	if x != nil {
 		return x.Price
 	}
-	return 0
+	return nil
 }
 
 type DeleteRequest struct {
@@ -485,7 +486,7 @@ var File_common_album_proto protoreflect.FileDescriptor
 
 const file_common_album_proto_rawDesc = "" +
 	"\n" +
-	"\x12common/album.proto\x12\bmetering\"[\n" +
+	"\x12common/album.proto\x12\bmetering\x1a\x1egoogle/protobuf/wrappers.proto\"[\n" +
 	"\x05Album\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x16\n" +
@@ -496,12 +497,12 @@ const file_common_album_proto_rawDesc = "" +
 	"\rCreateRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x16\n" +
 	"\x06artist\x18\x02 \x01(\tR\x06artist\x12\x14\n" +
-	"\x05price\x18\x03 \x01(\x01R\x05price\"c\n" +
+	"\x05price\x18\x03 \x01(\x01R\x05price\"\xbd\x01\n" +
 	"\rUpdateRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x16\n" +
-	"\x06artist\x18\x03 \x01(\tR\x06artist\x12\x14\n" +
-	"\x05price\x18\x04 \x01(\x01R\x05price\"\x1f\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x122\n" +
+	"\x05title\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueR\x05title\x124\n" +
+	"\x06artist\x18\x03 \x01(\v2\x1c.google.protobuf.StringValueR\x06artist\x122\n" +
+	"\x05price\x18\x04 \x01(\v2\x1c.google.protobuf.DoubleValueR\x05price\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"5\n" +
 	"\fReadResponse\x12%\n" +
@@ -516,7 +517,7 @@ const file_common_album_proto_rawDesc = "" +
 	"\x04Read\x12\x15.metering.ReadRequest\x1a\x16.metering.ReadResponse\x12;\n" +
 	"\x06Create\x12\x17.metering.CreateRequest\x1a\x18.metering.CreateResponse\x12;\n" +
 	"\x06Update\x12\x17.metering.UpdateRequest\x1a\x18.metering.UpdateResponse\x12;\n" +
-	"\x06Delete\x12\x17.metering.DeleteRequest\x1a\x18.metering.DeleteResponseB\tZ\a/commonb\x06proto3"
+	"\x06Delete\x12\x17.metering.DeleteRequest\x1a\x18.metering.DeleteResponseB6Z4github.com/ravirajsubramanian/metering/common;commonb\x06proto3"
 
 var (
 	file_common_album_proto_rawDescOnce sync.Once
@@ -532,33 +533,38 @@ func file_common_album_proto_rawDescGZIP() []byte {
 
 var file_common_album_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_common_album_proto_goTypes = []any{
-	(*Album)(nil),          // 0: metering.Album
-	(*ReadRequest)(nil),    // 1: metering.ReadRequest
-	(*CreateRequest)(nil),  // 2: metering.CreateRequest
-	(*UpdateRequest)(nil),  // 3: metering.UpdateRequest
-	(*DeleteRequest)(nil),  // 4: metering.DeleteRequest
-	(*ReadResponse)(nil),   // 5: metering.ReadResponse
-	(*CreateResponse)(nil), // 6: metering.CreateResponse
-	(*UpdateResponse)(nil), // 7: metering.UpdateResponse
-	(*DeleteResponse)(nil), // 8: metering.DeleteResponse
+	(*Album)(nil),                  // 0: metering.Album
+	(*ReadRequest)(nil),            // 1: metering.ReadRequest
+	(*CreateRequest)(nil),          // 2: metering.CreateRequest
+	(*UpdateRequest)(nil),          // 3: metering.UpdateRequest
+	(*DeleteRequest)(nil),          // 4: metering.DeleteRequest
+	(*ReadResponse)(nil),           // 5: metering.ReadResponse
+	(*CreateResponse)(nil),         // 6: metering.CreateResponse
+	(*UpdateResponse)(nil),         // 7: metering.UpdateResponse
+	(*DeleteResponse)(nil),         // 8: metering.DeleteResponse
+	(*wrapperspb.StringValue)(nil), // 9: google.protobuf.StringValue
+	(*wrapperspb.DoubleValue)(nil), // 10: google.protobuf.DoubleValue
 }
 var file_common_album_proto_depIdxs = []int32{
-	0, // 0: metering.ReadResponse.album:type_name -> metering.Album
-	0, // 1: metering.CreateResponse.album:type_name -> metering.Album
-	0, // 2: metering.UpdateResponse.album:type_name -> metering.Album
-	1, // 3: metering.AlbumService.Read:input_type -> metering.ReadRequest
-	2, // 4: metering.AlbumService.Create:input_type -> metering.CreateRequest
-	3, // 5: metering.AlbumService.Update:input_type -> metering.UpdateRequest
-	4, // 6: metering.AlbumService.Delete:input_type -> metering.DeleteRequest
-	5, // 7: metering.AlbumService.Read:output_type -> metering.ReadResponse
-	6, // 8: metering.AlbumService.Create:output_type -> metering.CreateResponse
-	7, // 9: metering.AlbumService.Update:output_type -> metering.UpdateResponse
-	8, // 10: metering.AlbumService.Delete:output_type -> metering.DeleteResponse
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	9,  // 0: metering.UpdateRequest.title:type_name -> google.protobuf.StringValue
+	9,  // 1: metering.UpdateRequest.artist:type_name -> google.protobuf.StringValue
+	10, // 2: metering.UpdateRequest.price:type_name -> google.protobuf.DoubleValue
+	0,  // 3: metering.ReadResponse.album:type_name -> metering.Album
+	0,  // 4: metering.CreateResponse.album:type_name -> metering.Album
+	0,  // 5: metering.UpdateResponse.album:type_name -> metering.Album
+	1,  // 6: metering.AlbumService.Read:input_type -> metering.ReadRequest
+	2,  // 7: metering.AlbumService.Create:input_type -> metering.CreateRequest
+	3,  // 8: metering.AlbumService.Update:input_type -> metering.UpdateRequest
+	4,  // 9: metering.AlbumService.Delete:input_type -> metering.DeleteRequest
+	5,  // 10: metering.AlbumService.Read:output_type -> metering.ReadResponse
+	6,  // 11: metering.AlbumService.Create:output_type -> metering.CreateResponse
+	7,  // 12: metering.AlbumService.Update:output_type -> metering.UpdateResponse
+	8,  // 13: metering.AlbumService.Delete:output_type -> metering.DeleteResponse
+	10, // [10:14] is the sub-list for method output_type
+	6,  // [6:10] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_common_album_proto_init() }
