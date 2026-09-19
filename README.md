@@ -168,17 +168,17 @@ From the repo root:
 # Install plugins first (see Prerequisites)
 protoc --go_out=. --go_opt=paths=source_relative \
        --go-grpc_out=. --go-grpc_opt=paths=source_relative \
-       proto/album.proto
+       common/album.proto
 ```
 
 Notes:
 
-- `proto/album.proto` currently declares `option go_package = "/common";`.
+- `common/album.proto` currently declares `option go_package = "/common";`.
   For cleaner imports prefer a full import path, e.g.:
   `option go_package = "github.com/ravirajsubramanian/metering/common;common";`
   then move outputs with `--go_out=.` accordingly.
 - The comment at the bottom of `proto/album.proto`
-  (`// protoc --go_out=. --go-grpc_out=. proto/album.proto`) is the shorthand
+  (`// protoc --go_out=. --go-grpc_out=. common/album.proto`) is the shorthand
   variant of the command above.
 - Generated with `protoc-gen-go v1.36.12`, `protoc-gen-go-grpc v1.6.2`,
   `protoc v7.36.0` — keep versions close to avoid churn.
@@ -222,7 +222,7 @@ Source: `proto/album.proto`
 ```proto
 syntax = "proto3";
 
-package album;
+package metering;
 
 option go_package = "/common";
 
@@ -246,7 +246,7 @@ service AlbumService {
 }
 ```
 
-Full method name: **`/album.AlbumService/Read`**
+Full method name: **`/metering.AlbumService/Read`**
 
 ### Messages
 
@@ -298,20 +298,20 @@ Requires reflection (default when `ENV != production`).
 ```bash
 # list services
 grpcurl -plaintext localhost:50051 list
-# → album.AlbumService
+# → metering.AlbumService
 # → grpc.reflection.v1.ServerReflection
 
 # list methods
-grpcurl -plaintext localhost:50051 list album.AlbumService
-# → album.AlbumService.Read
+grpcurl -plaintext localhost:50051 list metering.AlbumService
+# → metering.AlbumService.Read
 
 # describe types
-grpcurl -plaintext localhost:50051 describe album.ReadRequest
-grpcurl -plaintext localhost:50051 describe album.Album
+grpcurl -plaintext localhost:50051 describe metering.AlbumService.Read
+grpcurl -plaintext localhost:50051 describe metering.AlbumService.Create
 
 # call Read (seed IDs "1", "2", "3")
 grpcurl -plaintext -d '{"id": "1"}' \
-  localhost:50051 album.AlbumService/Read
+  localhost:50051 metering.AlbumService/Read
 ```
 
 Expected response (pretty-printed):

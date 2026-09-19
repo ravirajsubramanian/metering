@@ -7,6 +7,7 @@ import (
     "net"
     "sync"
     "fmt"
+    "github.com/google/uuid"
     "google.golang.org/grpc"
     "google.golang.org/grpc/codes"
     "google.golang.org/grpc/status"
@@ -14,28 +15,59 @@ import (
     pb "github.com/ravirajsubramanian/metering/common"
 )
 
-type album struct {
-    ID     string  `json:"id"`
-    Title  string  `json:"title"`
-    Artist string  `json:"artist"`
-    Price  float64 `json:"price"`
-}
-
-var albums = []album{
-    {ID: "1", Title: "Blue Train", Artist: "John Coltrane", Price: 56.99},
-    {ID: "2", Title: "Jeru", Artist: "Gerry Mulligan", Price: 17.99},
-    {ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
-}
-
-func getAlbum(id string) (album, bool) {
-    var match album
-    for i := 0; i < len(albums); i++ {
-        fmt.Println(albums[i])
-        if (albums[i].ID == id){
-            match = albums[i]
-        }
+func (s *server) getAlbum(id string) (*pb.Album, error) {
+    album, exists := s.albums[id]
+    if !exists {
+        return nil, status.Errorf(codes.NotFound, "Album with ID %s not found", id)
     }
-    return match, true
+    return &pb.Album{
+        Id:     album.Id,
+        Title:  album.Title,
+        Artist: album.Artist,
+        Price:  album.Price,
+    }, nil
+}
+
+func stringOrElse(primary, fallback string) string {
+    if primary != "" {
+        return primary
+    }
+    return fallback
+}
+
+func floatOrElse(primary, secondary float64) float64 {
+    if primary == nil {
+        return primary
+    }
+    return secondary
+}
+
+func (s *server) updateAlbum(id string, title string, artist string, price float64) (*pb.Album, error){
+    album, exists := s.albums[id]
+    if !exists {
+        return nil, status.Errorf(codes.NotFound, "Album with ID %s not found", id)
+    }
+    s.albums[id] = &pb.Album{
+        Id: album.Id,
+        Title: stringOrElse(title, album.Title),
+        Artist: stringOrElse(artist, album.Artist),
+        Price:  floatOrElse(price, album.Price),
+    }
+    return &pb.Album{
+        Id: s.albums[id].Id,
+        Title: s.albums[id].Title,
+        Artist: s.albums[id].Artist,
+        Price: s.albums[id].Price,
+    }, nil
+}
+
+func (s *server) deleteAlbum(id string) (string, error){
+    _, exists := s.albums[id]
+    if !exists {
+        return "", status.Errorf(codes.NotFound, "Album with ID %s not found", id)
+    }
+    delete(s.albums, id)
+    return id, nil
 }
 
 type server struct {
@@ -45,6 +77,16 @@ type server struct {
 }
 
 func (s *server) Create(ctx context.Context, req *pb.CreateRequest) (*pb.CreateResponse, error){
+    if req.GetTitle() == "" {
+        return nil, status.Error(codes.InvalidArgument, "title required")
+    }
+    if req.GetArtist() == "" {
+        return nil, status.Error(codes.InvalidArgument, "artist required")
+    }
+    if req.GetPrice() < 0 {
+        return nil, status.Error(codes.InvalidArgument, "price required")
+    }
+
     s.mu.Lock()
     defer s.mu.Unlock()
 
@@ -56,26 +98,41 @@ func (s *server) Create(ctx context.Context, req *pb.CreateRequest) (*pb.CreateR
     		Price: req.GetPrice(),
     	}
     s.albums[id] = album
-    return &pb.CreateResponse{Album album}, nil
+    return &pb.CreateResponse{ Album: album }, nil
 }
 
 func (s *server) Read(ctx context.Context, req *pb.ReadRequest) (*pb.ReadResponse, error) {
-// 	s.mu.RLock()
-// 	defer s.mu.RUnlock()
+	s.mu.RLock()
+	defer s.mu.RUnlock()
 
-	pickedAlbum, exists := getAlbum(req.GetId())
-	if !exists {
-		return nil, status.Errorf(codes.NotFound, "Album with ID %s not found", req.GetId())
+	pickedAlbum, err := s.getAlbum(req.GetId())
+	if err != nil {
+		return nil, err
 	}
 
-	return &pb.ReadResponse{
-        Album: &pb.Album{
-            Id:     pickedAlbum.ID,
-            Title:  pickedAlbum.Title,
-            Artist: pickedAlbum.Artist,
-            Price:  pickedAlbum.Price,
-        },
-    }, nil
+	return &pb.ReadResponse{ Album: pickedAlbum }, nil
+}
+
+func (s *server) Update(ctx context.Context, req *pb.UpdateRequest) (*pb.UpdateResponse, error) {
+    s.mu.Lock()
+    defer s.mu.Unlock()
+
+    updatedAlbum, err := s.updateAlbum(req.GetId(), req.GetTitle(), req.GetArtist(), req.GetPrice())
+    if err != nil {
+        return nil, err
+    }
+    return &pb.UpdateResponse{ Album: updatedAlbum }, nil
+}
+
+func (s *server) Delete(ctx context.Context, req *pb.DeleteRequest)(*pb.DeleteResponse, error){
+    s.mu.Lock()
+    defer s.mu.Unlock()
+
+    deletedId, err := s.deleteAlbum(req.GetId())
+    if err != nil {
+        return nil, err
+    }
+    return &pb.DeleteResponse{ Id: deletedId }, nil;
 }
 
 func main() {
