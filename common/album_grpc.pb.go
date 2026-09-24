@@ -19,6 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	AlbumService_List_FullMethodName   = "/metering.AlbumService/List"
 	AlbumService_Read_FullMethodName   = "/metering.AlbumService/Read"
 	AlbumService_Create_FullMethodName = "/metering.AlbumService/Create"
 	AlbumService_Update_FullMethodName = "/metering.AlbumService/Update"
@@ -29,6 +30,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AlbumServiceClient interface {
+	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	Read(ctx context.Context, in *ReadRequest, opts ...grpc.CallOption) (*ReadResponse, error)
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
@@ -41,6 +43,16 @@ type albumServiceClient struct {
 
 func NewAlbumServiceClient(cc grpc.ClientConnInterface) AlbumServiceClient {
 	return &albumServiceClient{cc}
+}
+
+func (c *albumServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListResponse)
+	err := c.cc.Invoke(ctx, AlbumService_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *albumServiceClient) Read(ctx context.Context, in *ReadRequest, opts ...grpc.CallOption) (*ReadResponse, error) {
@@ -87,6 +99,7 @@ func (c *albumServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts
 // All implementations must embed UnimplementedAlbumServiceServer
 // for forward compatibility.
 type AlbumServiceServer interface {
+	List(context.Context, *ListRequest) (*ListResponse, error)
 	Read(context.Context, *ReadRequest) (*ReadResponse, error)
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
@@ -101,6 +114,9 @@ type AlbumServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAlbumServiceServer struct{}
 
+func (UnimplementedAlbumServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method List not implemented")
+}
 func (UnimplementedAlbumServiceServer) Read(context.Context, *ReadRequest) (*ReadResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Read not implemented")
 }
@@ -132,6 +148,24 @@ func RegisterAlbumServiceServer(s grpc.ServiceRegistrar, srv AlbumServiceServer)
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&AlbumService_ServiceDesc, srv)
+}
+
+func _AlbumService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlbumServiceServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AlbumService_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlbumServiceServer).List(ctx, req.(*ListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _AlbumService_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -213,6 +247,10 @@ var AlbumService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "metering.AlbumService",
 	HandlerType: (*AlbumServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "List",
+			Handler:    _AlbumService_List_Handler,
+		},
 		{
 			MethodName: "Read",
 			Handler:    _AlbumService_Read_Handler,

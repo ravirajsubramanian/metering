@@ -35,6 +35,18 @@ func copyAlbum(a *pb.Album) *pb.Album {
 	}
 }
 
+func (s *Server) List(_ context.Context, req *pb.ListRequest) (*pb.ListResponse, error) {
+    s.mu.RLock()
+    defer s.mu.RUnlock()
+
+    albumSlice := make([]*pb.Album, 0, len(s.albums))
+    for _, album := range s.albums {
+        albumSlice = append(albumSlice, album)
+    }
+
+    return &pb.ListResponse{Albums: albumSlice}, nil
+}
+
 // Create inserts a new album and returns it with a server-generated ID.
 func (s *Server) Create(_ context.Context, req *pb.CreateRequest) (*pb.CreateResponse, error) {
 	if req.GetTitle() == "" {

@@ -140,6 +140,32 @@ func TestCreateAlbum_Validation(t *testing.T) {
 	}
 }
 
+func TestListAlbum(t *testing.T) {
+    c := newTestClient(t)
+
+    created := mustCreate(t, c, "Pavazha Malli", "Sai", 1000)
+
+    ctx, cancel := testCtx(t)
+    res, err := c.List(ctx, &pb.ListRequest{})
+    cancel()
+    if err != nil {
+        t.Fatalf("List %v", err)
+    }
+    got := res.GetAlbums()
+
+    var albums []*pb.Album
+    albums = got
+
+    if albums == nil {
+        t.Fatalf("The response array should not be empty", albums)
+    }
+    assert.NotEmpty(t, albums, "The response array should not be empty")
+    assert.Len(t, albums, 1, "The response should contain exactly 1 items")
+
+    firstAlbum := albums[0]
+    assert.Equal(t, created.GetTitle(), firstAlbum.Title, "First album title mismatch")
+}
+
 func TestReadAlbum(t *testing.T) {
 	c := newTestClient(t)
 
