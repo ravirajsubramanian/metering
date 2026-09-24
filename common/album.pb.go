@@ -90,6 +90,42 @@ func (x *Album) GetPrice() float64 {
 	return 0
 }
 
+type ListRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListRequest) Reset() {
+	*x = ListRequest{}
+	mi := &file_common_album_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRequest) ProtoMessage() {}
+
+func (x *ListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_common_album_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
+func (*ListRequest) Descriptor() ([]byte, []int) {
+	return file_common_album_proto_rawDescGZIP(), []int{1}
+}
+
 type ReadRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -99,7 +135,7 @@ type ReadRequest struct {
 
 func (x *ReadRequest) Reset() {
 	*x = ReadRequest{}
-	mi := &file_common_album_proto_msgTypes[1]
+	mi := &file_common_album_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -111,7 +147,7 @@ func (x *ReadRequest) String() string {
 func (*ReadRequest) ProtoMessage() {}
 
 func (x *ReadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_common_album_proto_msgTypes[1]
+	mi := &file_common_album_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124,7 +160,7 @@ func (x *ReadRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadRequest.ProtoReflect.Descriptor instead.
 func (*ReadRequest) Descriptor() ([]byte, []int) {
-	return file_common_album_proto_rawDescGZIP(), []int{1}
+	return file_common_album_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ReadRequest) GetId() string {
@@ -145,7 +181,7 @@ type CreateRequest struct {
 
 func (x *CreateRequest) Reset() {
 	*x = CreateRequest{}
-	mi := &file_common_album_proto_msgTypes[2]
+	mi := &file_common_album_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -157,7 +193,7 @@ func (x *CreateRequest) String() string {
 func (*CreateRequest) ProtoMessage() {}
 
 func (x *CreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_common_album_proto_msgTypes[2]
+	mi := &file_common_album_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -170,7 +206,7 @@ func (x *CreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRequest.ProtoReflect.Descriptor instead.
 func (*CreateRequest) Descriptor() ([]byte, []int) {
-	return file_common_album_proto_rawDescGZIP(), []int{2}
+	return file_common_album_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CreateRequest) GetTitle() string {
@@ -206,7 +242,7 @@ type UpdateRequest struct {
 
 func (x *UpdateRequest) Reset() {
 	*x = UpdateRequest{}
-	mi := &file_common_album_proto_msgTypes[3]
+	mi := &file_common_album_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -218,7 +254,7 @@ func (x *UpdateRequest) String() string {
 func (*UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_common_album_proto_msgTypes[3]
+	mi := &file_common_album_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -231,7 +267,7 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_common_album_proto_rawDescGZIP(), []int{3}
+	return file_common_album_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *UpdateRequest) GetId() string {
@@ -271,7 +307,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_common_album_proto_msgTypes[4]
+	mi := &file_common_album_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -283,7 +319,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_common_album_proto_msgTypes[4]
+	mi := &file_common_album_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -296,7 +332,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_common_album_proto_rawDescGZIP(), []int{4}
+	return file_common_album_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -304,6 +340,50 @@ func (x *DeleteRequest) GetId() string {
 		return x.Id
 	}
 	return ""
+}
+
+type ListResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Albums        []*Album               `protobuf:"bytes,1,rep,name=albums,proto3" json:"albums,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListResponse) Reset() {
+	*x = ListResponse{}
+	mi := &file_common_album_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListResponse) ProtoMessage() {}
+
+func (x *ListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_common_album_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
+func (*ListResponse) Descriptor() ([]byte, []int) {
+	return file_common_album_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ListResponse) GetAlbums() []*Album {
+	if x != nil {
+		return x.Albums
+	}
+	return nil
 }
 
 type ReadResponse struct {
@@ -315,7 +395,7 @@ type ReadResponse struct {
 
 func (x *ReadResponse) Reset() {
 	*x = ReadResponse{}
-	mi := &file_common_album_proto_msgTypes[5]
+	mi := &file_common_album_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -327,7 +407,7 @@ func (x *ReadResponse) String() string {
 func (*ReadResponse) ProtoMessage() {}
 
 func (x *ReadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_common_album_proto_msgTypes[5]
+	mi := &file_common_album_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -340,7 +420,7 @@ func (x *ReadResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadResponse.ProtoReflect.Descriptor instead.
 func (*ReadResponse) Descriptor() ([]byte, []int) {
-	return file_common_album_proto_rawDescGZIP(), []int{5}
+	return file_common_album_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ReadResponse) GetAlbum() *Album {
@@ -359,7 +439,7 @@ type CreateResponse struct {
 
 func (x *CreateResponse) Reset() {
 	*x = CreateResponse{}
-	mi := &file_common_album_proto_msgTypes[6]
+	mi := &file_common_album_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -371,7 +451,7 @@ func (x *CreateResponse) String() string {
 func (*CreateResponse) ProtoMessage() {}
 
 func (x *CreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_common_album_proto_msgTypes[6]
+	mi := &file_common_album_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -384,7 +464,7 @@ func (x *CreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateResponse.ProtoReflect.Descriptor instead.
 func (*CreateResponse) Descriptor() ([]byte, []int) {
-	return file_common_album_proto_rawDescGZIP(), []int{6}
+	return file_common_album_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CreateResponse) GetAlbum() *Album {
@@ -403,7 +483,7 @@ type UpdateResponse struct {
 
 func (x *UpdateResponse) Reset() {
 	*x = UpdateResponse{}
-	mi := &file_common_album_proto_msgTypes[7]
+	mi := &file_common_album_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -415,7 +495,7 @@ func (x *UpdateResponse) String() string {
 func (*UpdateResponse) ProtoMessage() {}
 
 func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_common_album_proto_msgTypes[7]
+	mi := &file_common_album_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -428,7 +508,7 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return file_common_album_proto_rawDescGZIP(), []int{7}
+	return file_common_album_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UpdateResponse) GetAlbum() *Album {
@@ -447,7 +527,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_common_album_proto_msgTypes[8]
+	mi := &file_common_album_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -459,7 +539,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_common_album_proto_msgTypes[8]
+	mi := &file_common_album_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -472,7 +552,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_common_album_proto_rawDescGZIP(), []int{8}
+	return file_common_album_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DeleteResponse) GetId() string {
@@ -491,7 +571,8 @@ const file_common_album_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x16\n" +
 	"\x06artist\x18\x03 \x01(\tR\x06artist\x12\x14\n" +
-	"\x05price\x18\x04 \x01(\x01R\x05price\"\x1d\n" +
+	"\x05price\x18\x04 \x01(\x01R\x05price\"\r\n" +
+	"\vListRequest\"\x1d\n" +
 	"\vReadRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"S\n" +
 	"\rCreateRequest\x12\x14\n" +
@@ -504,7 +585,9 @@ const file_common_album_proto_rawDesc = "" +
 	"\x06artist\x18\x03 \x01(\v2\x1c.google.protobuf.StringValueR\x06artist\x122\n" +
 	"\x05price\x18\x04 \x01(\v2\x1c.google.protobuf.DoubleValueR\x05price\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"5\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"7\n" +
+	"\fListResponse\x12'\n" +
+	"\x06albums\x18\x01 \x03(\v2\x0f.metering.AlbumR\x06albums\"5\n" +
 	"\fReadResponse\x12%\n" +
 	"\x05album\x18\x01 \x01(\v2\x0f.metering.AlbumR\x05album\"7\n" +
 	"\x0eCreateResponse\x12%\n" +
@@ -512,8 +595,9 @@ const file_common_album_proto_rawDesc = "" +
 	"\x0eUpdateResponse\x12%\n" +
 	"\x05album\x18\x01 \x01(\v2\x0f.metering.AlbumR\x05album\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xfc\x01\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xb3\x02\n" +
 	"\fAlbumService\x125\n" +
+	"\x04List\x12\x15.metering.ListRequest\x1a\x16.metering.ListResponse\x125\n" +
 	"\x04Read\x12\x15.metering.ReadRequest\x1a\x16.metering.ReadResponse\x12;\n" +
 	"\x06Create\x12\x17.metering.CreateRequest\x1a\x18.metering.CreateResponse\x12;\n" +
 	"\x06Update\x12\x17.metering.UpdateRequest\x1a\x18.metering.UpdateResponse\x12;\n" +
@@ -531,40 +615,45 @@ func file_common_album_proto_rawDescGZIP() []byte {
 	return file_common_album_proto_rawDescData
 }
 
-var file_common_album_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_common_album_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_common_album_proto_goTypes = []any{
 	(*Album)(nil),                  // 0: metering.Album
-	(*ReadRequest)(nil),            // 1: metering.ReadRequest
-	(*CreateRequest)(nil),          // 2: metering.CreateRequest
-	(*UpdateRequest)(nil),          // 3: metering.UpdateRequest
-	(*DeleteRequest)(nil),          // 4: metering.DeleteRequest
-	(*ReadResponse)(nil),           // 5: metering.ReadResponse
-	(*CreateResponse)(nil),         // 6: metering.CreateResponse
-	(*UpdateResponse)(nil),         // 7: metering.UpdateResponse
-	(*DeleteResponse)(nil),         // 8: metering.DeleteResponse
-	(*wrapperspb.StringValue)(nil), // 9: google.protobuf.StringValue
-	(*wrapperspb.DoubleValue)(nil), // 10: google.protobuf.DoubleValue
+	(*ListRequest)(nil),            // 1: metering.ListRequest
+	(*ReadRequest)(nil),            // 2: metering.ReadRequest
+	(*CreateRequest)(nil),          // 3: metering.CreateRequest
+	(*UpdateRequest)(nil),          // 4: metering.UpdateRequest
+	(*DeleteRequest)(nil),          // 5: metering.DeleteRequest
+	(*ListResponse)(nil),           // 6: metering.ListResponse
+	(*ReadResponse)(nil),           // 7: metering.ReadResponse
+	(*CreateResponse)(nil),         // 8: metering.CreateResponse
+	(*UpdateResponse)(nil),         // 9: metering.UpdateResponse
+	(*DeleteResponse)(nil),         // 10: metering.DeleteResponse
+	(*wrapperspb.StringValue)(nil), // 11: google.protobuf.StringValue
+	(*wrapperspb.DoubleValue)(nil), // 12: google.protobuf.DoubleValue
 }
 var file_common_album_proto_depIdxs = []int32{
-	9,  // 0: metering.UpdateRequest.title:type_name -> google.protobuf.StringValue
-	9,  // 1: metering.UpdateRequest.artist:type_name -> google.protobuf.StringValue
-	10, // 2: metering.UpdateRequest.price:type_name -> google.protobuf.DoubleValue
-	0,  // 3: metering.ReadResponse.album:type_name -> metering.Album
-	0,  // 4: metering.CreateResponse.album:type_name -> metering.Album
-	0,  // 5: metering.UpdateResponse.album:type_name -> metering.Album
-	1,  // 6: metering.AlbumService.Read:input_type -> metering.ReadRequest
-	2,  // 7: metering.AlbumService.Create:input_type -> metering.CreateRequest
-	3,  // 8: metering.AlbumService.Update:input_type -> metering.UpdateRequest
-	4,  // 9: metering.AlbumService.Delete:input_type -> metering.DeleteRequest
-	5,  // 10: metering.AlbumService.Read:output_type -> metering.ReadResponse
-	6,  // 11: metering.AlbumService.Create:output_type -> metering.CreateResponse
-	7,  // 12: metering.AlbumService.Update:output_type -> metering.UpdateResponse
-	8,  // 13: metering.AlbumService.Delete:output_type -> metering.DeleteResponse
-	10, // [10:14] is the sub-list for method output_type
-	6,  // [6:10] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	11, // 0: metering.UpdateRequest.title:type_name -> google.protobuf.StringValue
+	11, // 1: metering.UpdateRequest.artist:type_name -> google.protobuf.StringValue
+	12, // 2: metering.UpdateRequest.price:type_name -> google.protobuf.DoubleValue
+	0,  // 3: metering.ListResponse.albums:type_name -> metering.Album
+	0,  // 4: metering.ReadResponse.album:type_name -> metering.Album
+	0,  // 5: metering.CreateResponse.album:type_name -> metering.Album
+	0,  // 6: metering.UpdateResponse.album:type_name -> metering.Album
+	1,  // 7: metering.AlbumService.List:input_type -> metering.ListRequest
+	2,  // 8: metering.AlbumService.Read:input_type -> metering.ReadRequest
+	3,  // 9: metering.AlbumService.Create:input_type -> metering.CreateRequest
+	4,  // 10: metering.AlbumService.Update:input_type -> metering.UpdateRequest
+	5,  // 11: metering.AlbumService.Delete:input_type -> metering.DeleteRequest
+	6,  // 12: metering.AlbumService.List:output_type -> metering.ListResponse
+	7,  // 13: metering.AlbumService.Read:output_type -> metering.ReadResponse
+	8,  // 14: metering.AlbumService.Create:output_type -> metering.CreateResponse
+	9,  // 15: metering.AlbumService.Update:output_type -> metering.UpdateResponse
+	10, // 16: metering.AlbumService.Delete:output_type -> metering.DeleteResponse
+	12, // [12:17] is the sub-list for method output_type
+	7,  // [7:12] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_common_album_proto_init() }
@@ -578,7 +667,7 @@ func file_common_album_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_album_proto_rawDesc), len(file_common_album_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
